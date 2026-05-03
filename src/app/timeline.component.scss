@@ -84,11 +84,21 @@
 }
 
 h1 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin: 0;
   color: var(--tl-color-heading);
   font-size: var(--tl-font-size-title);
   font-weight: var(--tl-font-weight-bold);
-  letter-spacing: 0;
+}
+
+.timeline-title-icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #9fb4d0;
+  stroke-width: 2;
 }
 
 .header-meta {
@@ -290,6 +300,45 @@ h1 {
   height: calc(var(--axis-height) + (var(--row-height) * 7));
 }
 
+.chart-shimmer {
+  position: relative;
+  width: 100%;
+  height: calc(var(--axis-height) + (var(--row-height) * 7));
+  box-sizing: border-box;
+  padding: var(--axis-height) var(--tl-chart-grid-inline) 0;
+  overflow: hidden;
+  background: rgba(3, 11, 23, 0.24);
+}
+
+.shimmer-row {
+  display: flex;
+  align-items: center;
+  height: var(--row-height);
+  border-top: 1px solid var(--tl-color-border-soft);
+}
+
+.shimmer-line {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: rgba(74, 92, 119, 0.34);
+  height: 10px;
+  border-radius: 999px;
+}
+
+.shimmer-label {
+  justify-content: flex-start;
+}
+
+.shimmer-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(180, 205, 235, 0.28), transparent);
+  animation: shimmer 1.25s ease-in-out infinite;
+}
+
 .scrubber-panel,
 .footer-controls {
   box-sizing: border-box;
@@ -478,6 +527,7 @@ h1 {
   border-radius: 5px;
   background: rgba(5, 13, 25, 0.98);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+  z-index: 5;
 }
 
 .refresh-menu button {
@@ -535,9 +585,11 @@ h1 {
   }
 }
 
-// ── Animations ────────────────────────────────────────────────────────────────
-
 @keyframes pulse {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.25; }
-}   
+  50% { opacity: 0.25; }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}

@@ -1,6 +1,14 @@
 <section class="timeline-shell" aria-label="System timeline">
   <header class="timeline-header">
-    <h1>SYSTEM TIMELINE</h1>
+    <h1>
+      <svg class="timeline-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 6v6l4 2"></path>
+        <circle cx="12" cy="12" r="8"></circle>
+        <path d="M4 12H2"></path>
+        <path d="M22 12h-2"></path>
+      </svg>
+      <span>SYSTEM TIMELINE</span>
+    </h1>
 
     <div class="header-meta" aria-label="Timeline status">
       <span class="live-pill">
@@ -39,22 +47,40 @@
 
   <div class="timeline-board">
     <div class="label-column" aria-label="Timeline rows">
-      <button
-        class="label-row"
-        type="button"
-        *ngFor="let row of rows; let i = index"
-        [class.is-selected]="selectedRowIndex === i"
-        [attr.aria-pressed]="selectedRowIndex === i"
-        (click)="selectRow(i)"
-      >
-        {{ row }}
-      </button>
+      <ng-container *ngIf="!isLoading; else labelShimmer">
+        <button
+          class="label-row"
+          type="button"
+          *ngFor="let row of rows; let i = index"
+          [class.is-selected]="selectedRowIndex === i"
+          [attr.aria-pressed]="selectedRowIndex === i"
+          (click)="selectRow(i)"
+        >
+          {{ row }}
+        </button>
+      </ng-container>
+
+      <ng-template #labelShimmer>
+        <div class="label-row shimmer-label" *ngFor="let row of shimmerRows; let i = index">
+          <span class="shimmer-line" [style.width.%]="i % 2 === 0 ? 68 : 58"></span>
+        </div>
+      </ng-template>
     </div>
 
     <div class="chart-column" [style.--selected-row]="selectedRowIndex">
-      <div class="chart-selected-row" aria-hidden="true"></div>
-      <span class="now-label" *ngIf="isNowInView" [style.--now-position]="nowPositionRatio">{{ nowLabel }}</span>
-      <div echarts [options]="option" class="chart-canvas"></div>
+      <ng-container *ngIf="!isLoading; else chartShimmer">
+        <div class="chart-selected-row" aria-hidden="true"></div>
+        <span class="now-label" *ngIf="isNowInView" [style.--now-position]="nowPositionRatio">{{ nowLabel }}</span>
+        <div echarts [options]="option" class="chart-canvas"></div>
+      </ng-container>
+
+      <ng-template #chartShimmer>
+        <div class="chart-shimmer" aria-label="Loading timeline data">
+          <div class="shimmer-row" *ngFor="let row of shimmerRows; let i = index">
+            <span class="shimmer-line" [style.width.%]="84 - (i % 3) * 9"></span>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
 

@@ -1,13 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-
-type TimelineStatus = 'ok' | 'warn' | 'error';
-
-interface TimelineEvent {
-  row: number;
-  minute: number;
-  time: string;
-  status: TimelineStatus;
-}
+import { TimelineEvent, TimelineService, TimelineStatus } from './timeline.service';
 
 @Component({
   selector: 'app-timeline',
@@ -29,24 +21,9 @@ export class TimelineComponent implements OnInit, OnDestroy {
   lastUpdatedTime = '10:32:45';
   clockTime = '10:32:45';
 
-  readonly rows = [
-    'Prev Day EOD',
-    'Cash Px Drop',
-    'Derivs LN',
-    'Cash Px Drop 2',
-    'Treasury EOD',
-    'FX Rates',
-    'Derivs US'
-  ];
-
-  readonly events: TimelineEvent[] = [
-    { row: 0, minute: 210, time: '10:30', status: 'ok' },
-    { row: 1, minute: 270, time: '11:30', status: 'ok' },
-    { row: 2, minute: 330, time: '12:30', status: 'error' },
-    { row: 3, minute: 450, time: '14:30', status: 'ok' },
-    { row: 4, minute: 480, time: '15:00', status: 'warn' },
-    { row: 5, minute: 630, time: '17:30', status: 'ok' }
-  ];
+  rows: string[] = [];
+  events: TimelineEvent[] = [];
+  isLoading = false;
 
   readonly scrubberLabels = [
     { time: '08:00', left: 12.5 },
@@ -55,6 +32,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     { time: '14:00', left: 63.5 },
     { time: '16:00', left: 80.5 }
   ];
+  readonly shimmerRows = Array.from({ length: 7 });
 
   statusFilters: Record<TimelineStatus, boolean> = {
     ok: true,
@@ -74,9 +52,12 @@ export class TimelineComponent implements OnInit, OnDestroy {
   option: any;
   private autoRefreshTimerId?: number;
   private clockTimerId?: number;
+  private timelineDataRequestId = 0;
   private activeScrubHandle: 'start' | 'end' | null = null;
   private readonly pointerMoveListener = (event: PointerEvent) => this.updateScrubberHandle(event);
   private readonly pointerUpListener = () => this.stopScrubberDrag();
+
+  constructor(private readonly timelineService: TimelineService) {}
 
   ngOnInit(): void {
     this.refreshTimeline();
@@ -354,6 +335,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
   }
 
   private refreshTimeline(): void {
+    const requestId = ++this.timelineDataRequestId;
     const now = new Date();
     this.updateClock(now);
     this.lastUpdatedTime = this.formatClockTime(now);
@@ -361,7 +343,18 @@ export class TimelineComponent implements OnInit, OnDestroy {
     const rawNowMinutes = (now.getHours() - this.startHour) * 60 + now.getMinutes();
     this.nowMinutes = this.clamp(rawNowMinutes, 0, this.totalMinutes);
     this.nowLabel = `NOW ${this.formatClockTime(now, false)}`;
-    this.option = this.buildChartOption();
+    this.isLoading = true;
+
+    this.timelineService.getTimelineData().subscribe(data => {
+      if (requestId !== this.timelineDataRequestId) {
+        return;
+      }
+
+      this.rows = data.rows;
+      this.events = data.events;
+      this.option = this.buildChartOption();
+      this.isLoading = false;
+    });
   }
 
   private startClock(): void {
