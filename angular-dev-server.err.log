@@ -1,0 +1,304 @@
+- Generating browser application bundles (phase: setup)...
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+
+Error: Module not found: Error: Can't resolve 'E:/Practice/Angular/v16-project/my-app/src/app/timeline.component.scss?ngResource' in 'E:\Practice\Angular\v16-project\my-app'
+
+Error: The loader "E:/Practice/Angular/v16-project/my-app/src/app/timeline.component.scss" didn't return a string.
+
+
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+
+Error: src/app/app.module.ts:9:41 - error TS2307: Cannot find module './timeline/timeline.component' or its corresponding type declarations.
+
+9 import { SystemTimelineComponent } from './timeline/timeline.component';
+                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+√ Browser application bundle generation complete.
+
+./src/app/app.module.ts:9:0-72 - Error: Module not found: Error: Can't resolve './timeline/timeline.component' in 'E:\Practice\Angular\v16-project\my-app\src\app'
+
+Error: src/app/app.component.html:1:1 - error NG8001: 'app-timeline' is not a known element:
+1. If 'app-timeline' is an Angular component, then verify that it is part of this module.
+2. If 'app-timeline' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+1 <app-timeline></app-timeline>
+  ~~~~~~~~~~~~~~
+
+  src/app/app.component.ts:5:16
+    5   templateUrl: './app.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AppComponent.
+
+
+Error: src/app/app.module.ts:9:41 - error TS2307: Cannot find module './timeline/timeline.component' or its corresponding type declarations.
+
+9 import { SystemTimelineComponent } from './timeline/timeline.component';
+                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app.module.ts:15:17 - error NG1010: Value
+
+Error: src/app/timeline.component.html:57:20 - error NG8002: Can't bind to 'options' since it isn't a known property of 'div'.
+
+57       <div echarts [options]="option" class="chart-canvas"></div>
+                      ~~~~~~~~~~~~~~~~~~
+
+  src/app/timeline.component.ts:14:16
+    14   templateUrl: './timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component TimelineComponent.
+
+
+
+√ Browser application bundle generation complete.
+
+./src/app/app.module.ts:9:0-72 - Error: Module not found: Error: Can't resolve './timeline/timeline.component' in 'E:\Practice\Angular\v16-project\my-app\src\app'
+
+Error: src/app/app.component.html:1:1 - error NG8001: 'app-timeline' is not a known element:
+1. If 'app-timeline' is an Angular component, then verify that it is part of this module.
+2. If 'app-timeline' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+1 <app-timeline></app-timeline>
+  ~~~~~~~~~~~~~~
+
+  src/app/app.component.ts:5:16
+    5   templateUrl: './app.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AppComponent.
+
+
+Error: src/app/app.module.ts:9:41 - error TS2307: Cannot find module './timeline/timeline.component' or its corresponding type declarations.
+
+9 import { SystemTimelineComponent } from './timeline/timeline.component';
+                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app.module.ts:15:17 - error NG1010: Value
+
+Error: src/app/timeline.component.html:57:20 - error NG8002: Can't bind to 'options' since it isn't a known property of 'div'.
+
+57       <div echarts [options]="option" class="chart-canvas"></div>
+                      ~~~~~~~~~~~~~~~~~~
+
+  src/app/timeline.component.ts:14:16
+    14   templateUrl: './timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component TimelineComponent.
+
+
+
+√ Browser application bundle generation complete.
+
+Error: src/app/services/timeline-data.service.ts:17:16 - error TS2314: Generic type 'Observable<T>' requires 1 type argument(s).
+
+17   getEvents(): Observable {
+                  ~~~~~~~~~~
+
+
+Error: src/app/timeline/system-timeline.component.html:37:6 - error TS2322: Type 'EChartsOption | undefined' is not assignable to type 'EChartsOption | null'.
+  Type 'undefined' is not assignable to type 'EChartsOption | null'.
+
+37     [merge]="mergeOptions"
+        ~~~~~
+
+  src/app/timeline/system-timeline.component.ts:63:16
+    63   templateUrl: './system-timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SystemTimelineComponent.
+
+
+
+√ Browser application bundle generation complete.
+
+Error: src/app/services/timeline-data.service.ts:17:16 - error TS2314: Generic type 'Observable<T>' requires 1 type argument(s).
+
+17   getEvents(): Observable {
+                  ~~~~~~~~~~
+
+
+Error: src/app/timeline/system-timeline.component.html:37:6 - error TS2322: Type 'EChartsOption | undefined' is not assignable to type 'EChartsOption | null'.
+  Type 'undefined' is not assignable to type 'EChartsOption | null'.
+
+37     [merge]="mergeOptions"
+        ~~~~~
+
+  src/app/timeline/system-timeline.component.ts:63:16
+    63   templateUrl: './system-timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SystemTimelineComponent.
+
+
+
+√ Browser application bundle generation complete.
+
+Error: src/app/timeline/system-timeline.component.html:37:6 - error TS2322: Type 'EChartsOption | undefined' is not assignable to type 'EChartsOption | null'.
+  Type 'undefined' is not assignable to type 'EChartsOption | null'.
+
+37     [merge]="mergeOptions"
+        ~~~~~
+
+  src/app/timeline/system-timeline.component.ts:63:16
+    63   templateUrl: './system-timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SystemTimelineComponent.
+
+
+
+√ Browser application bundle generation complete.
+
+Error: src/app/timeline/system-timeline.component.html:37:6 - error TS2322: Type 'EChartsOption | undefined' is not assignable to type 'EChartsOption | null'.
+  Type 'undefined' is not assignable to type 'EChartsOption | null'.
+
+37     [merge]="mergeOptions"
+        ~~~~~
+
+  src/app/timeline/system-timeline.component.ts:63:16
+    63   templateUrl: './system-timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SystemTimelineComponent.
+
+
+Error: src/app/timeline/system-timeline.component.ts:72:3 - error TS2322: Type 'never[]' is not assignable to type 'EChartsOption'.
+  Index signature for type 'string' is missing in type 'never[]'.
+
+72   mergeOptions: EChartsOption | undefined = [];
+     ~~~~~~~~~~~~
+
+
+
+√ Browser application bundle generation complete.
+
+Error: src/app/timeline/system-timeline.component.html:37:6 - error TS2322: Type 'EChartsOption | undefined' is not assignable to type 'EChartsOption | null'.
+  Type 'undefined' is not assignable to type 'EChartsOption | null'.
+
+37     [merge]="mergeOptions"
+        ~~~~~
+
+  src/app/timeline/system-timeline.component.ts:63:16
+    63   templateUrl: './system-timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SystemTimelineComponent.
+
+
+Error: src/app/timeline/system-timeline.component.ts:72:3 - error TS2322: Type 'null' is not assignable to type 'EChartsOption | undefined'.
+
+72   mergeOptions: EChartsOption | undefined = null;
+     ~~~~~~~~~~~~
+
+
+
+√ Browser application bundle generation complete.
+
+Error: src/app/timeline/system-timeline.component.html:37:6 - error TS2322: Type 'EChartsOption | undefined' is not assignable to type 'EChartsOption | null'.
+  Type 'undefined' is not assignable to type 'EChartsOption | null'.
+
+37     [merge]="mergeOptions"
+        ~~~~~
+
+  src/app/timeline/system-timeline.component.ts:63:16
+    63   templateUrl: './system-timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SystemTimelineComponent.
+
+
+
+√ Browser application bundle generation complete.
+
+Error: src/app/timeline/system-timeline.component.html:37:6 - error TS2322: Type 'EChartsOption | undefined' is not assignable to type 'EChartsOption | null'.
+  Type 'undefined' is not assignable to type 'EChartsOption | null'.
+
+37     [merge]="mergeOptions"
+        ~~~~~
+
+  src/app/timeline/system-timeline.component.ts:63:16
+    63   templateUrl: './system-timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SystemTimelineComponent.
+
+
+Error: src/app/timeline/system-timeline.component.ts:72:3 - error TS2322: Type 'null' is not assignable to type 'EChartsOption | undefined'.
+
+72   mergeOptions: EChartsOption | undefined = null
+     ~~~~~~~~~~~~
+
+
+
+√ Browser application bundle generation complete.
+
+Error: src/app/timeline/system-timeline.component.html:37:6 - error TS2322: Type 'EChartsOption | undefined' is not assignable to type 'EChartsOption | null'.
+  Type 'undefined' is not assignable to type 'EChartsOption | null'.
+
+37     [merge]="mergeOptions"
+        ~~~~~
+
+  src/app/timeline/system-timeline.component.ts:63:16
+    63   templateUrl: './system-timeline.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component SystemTimelineComponent.
+
+
+Error: src/app/timeline/system-timeline.component.ts:72:3 - error TS2322: Type 'null' is not assignable to type 'EChartsOption | undefined'.
+
+72   mergeOptions: EChartsOption | undefined = null;
+     ~~~~~~~~~~~~
+
+
+
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.

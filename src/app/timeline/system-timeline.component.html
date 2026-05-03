@@ -1,0 +1,72 @@
+<!-- system-timeline.component.html -->
+<div class="tl-wrapper">
+
+  <!-- ══════════════════════════════════════════════════════════
+       Header
+  ══════════════════════════════════════════════════════════ -->
+  <div class="tl-header">
+    <span class="tl-title">SYSTEM TIMELINE</span>
+    <div class="tl-header-right">
+      <span class="live-dot"></span>
+      <span class="live-label">LIVE</span>
+      <span class="divider">|</span>
+      <span class="meta">LAST UPDATED: {{ lastUpdated }}</span>
+      <span class="divider">|</span>
+      <span class="meta clock-icon">⏱ {{ lastUpdated }}</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       Legend (top)
+  ══════════════════════════════════════════════════════════ -->
+  <div class="tl-legend">
+    <ng-container *ngFor="let s of statusList">
+      <label class="legend-item">
+        <span class="dot" [style.background-color]="s.color"></span>
+        <span class="legend-label">{{ s.key }}</span>
+      </label>
+    </ng-container>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       ECharts timeline chart
+  ══════════════════════════════════════════════════════════ -->
+  <div
+    echarts
+    [options]="chartOptions"
+    [merge]="mergeOptions"
+    class="tl-chart"
+    (chartInit)="onChartInit($event)">
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       Footer — filter checkboxes + auto-refresh indicator
+  ══════════════════════════════════════════════════════════ -->
+  <div class="tl-footer">
+
+    <!-- Show filter checkboxes -->
+    <div class="show-filters">
+      <span class="show-label">SHOW:</span>
+      <ng-container *ngFor="let s of statusList">
+        <label class="filter-check">
+          <input
+            type="checkbox"
+            [checked]="filters[s.key]"
+            (change)="toggleFilter(s.key)"
+          />
+          <span class="filter-dot" [style.background-color]="s.color"></span>
+          <span [style.color]="s.color">{{ s.key }}</span>
+        </label>
+      </ng-container>
+    </div>
+
+    <!-- Auto refresh badge -->
+    <div class="auto-refresh">
+      <span class="refresh-text">AUTO REFRESH:</span>
+      <span class="refresh-badge">30s</span>
+      <span class="refresh-dot"></span>
+    </div>
+
+  </div>
+
+</div>

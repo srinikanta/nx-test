@@ -1,0 +1,162 @@
+<section class="timeline-shell" aria-label="System timeline">
+  <header class="timeline-header">
+    <h1>SYSTEM TIMELINE</h1>
+
+    <div class="header-meta" aria-label="Timeline status">
+      <span class="live-pill">
+        <span class="live-dot"></span>
+        LIVE
+      </span>
+      <span class="meta-divider"></span>
+      <span class="updated-label">
+        LAST UPDATED:
+        <span>{{ lastUpdatedTime }}</span>
+      </span>
+      <span class="meta-divider"></span>
+      <span class="clock-label">
+        <span class="clock-icon" aria-hidden="true"></span>
+        {{ clockTime }}
+      </span>
+    </div>
+  </header>
+
+  <div class="timeline-divider"></div>
+
+  <div class="legend-row" aria-label="Status legend">
+    <span class="legend-item">
+      <span class="status-dot ok"></span>
+      SUCCESS
+    </span>
+    <span class="legend-item">
+      <span class="status-dot warn"></span>
+      DELAYED
+    </span>
+    <span class="legend-item">
+      <span class="status-dot error"></span>
+      FAILED
+    </span>
+  </div>
+
+  <div class="timeline-board">
+    <div class="label-column" aria-label="Timeline rows">
+      <button
+        class="label-row"
+        type="button"
+        *ngFor="let row of rows; let i = index"
+        [class.is-selected]="selectedRowIndex === i"
+        [attr.aria-pressed]="selectedRowIndex === i"
+        (click)="selectRow(i)"
+      >
+        {{ row }}
+      </button>
+    </div>
+
+    <div class="chart-column" [style.--selected-row]="selectedRowIndex">
+      <div class="chart-selected-row" aria-hidden="true"></div>
+      <span class="now-label" *ngIf="isNowInView" [style.--now-position]="nowPositionRatio">{{ nowLabel }}</span>
+      <div echarts [options]="option" class="chart-canvas"></div>
+    </div>
+  </div>
+
+  <div class="scrubber-panel" aria-label="Timeline range controls">
+    <button class="scrub-button" type="button" aria-label="Scroll left" (click)="scrollLeft()">&#8249;</button>
+    <span class="scrub-edge-time">07:00</span>
+
+    <div
+      class="scrubber-track"
+      #scrubberTrack
+      (pointerdown)="onScrubberTrackPointerDown($event)"
+    >
+      <div class="minor-ticks"></div>
+      <div
+        class="scrub-selection"
+        [style.left.%]="scrubStartPercent"
+        [style.width.%]="scrubWidthPercent"
+      ></div>
+      <button
+        class="range-handle range-handle-left"
+        type="button"
+        aria-label="Start handle"
+        [style.left.%]="scrubStartPercent"
+        (pointerdown)="startScrubberDrag('start', $event)"
+      >
+        <span></span>
+        <span></span>
+      </button>
+      <button
+        class="range-handle range-handle-right"
+        type="button"
+        aria-label="End handle"
+        [style.left.%]="scrubEndPercent"
+        (pointerdown)="startScrubberDrag('end', $event)"
+      >
+        <span></span>
+        <span></span>
+      </button>
+      <span
+        class="scrub-label"
+        *ngFor="let label of scrubberLabels"
+        [style.left.%]="label.left"
+      >
+        {{ label.time }}
+      </span>
+    </div>
+
+    <span class="scrub-edge-time">18:00</span>
+    <button class="scrub-button" type="button" aria-label="Scroll right" (click)="scrollRight()">&#8250;</button>
+  </div>
+
+  <footer class="footer-controls">
+    <div class="filter-group" aria-label="Status visibility filters">
+      <span class="show-label">SHOW:</span>
+      <label class="filter-item ok-filter">
+        <input type="checkbox" [checked]="statusFilters.ok" (change)="toggleStatus('ok', $event)" />
+        <span class="filter-box"></span>
+        <span>SUCCESS</span>
+      </label>
+      <label class="filter-item warn-filter">
+        <input type="checkbox" [checked]="statusFilters.warn" (change)="toggleStatus('warn', $event)" />
+        <span class="filter-box"></span>
+        <span>DELAYED</span>
+      </label>
+      <label class="filter-item error-filter">
+        <input type="checkbox" [checked]="statusFilters.error" (change)="toggleStatus('error', $event)" />
+        <span class="filter-box"></span>
+        <span>FAILED</span>
+      </label>
+    </div>
+
+    <div class="refresh-control">
+      <span>AUTO REFRESH:</span>
+      <button
+        class="refresh-interval-button"
+        type="button"
+        aria-label="Auto refresh interval"
+        [attr.aria-expanded]="isRefreshMenuOpen"
+        (click)="toggleRefreshMenu()"
+      >
+        {{ autoRefreshIntervalSeconds }}s
+        <span class="chevron-down"></span>
+      </button>
+      <div class="refresh-menu" *ngIf="isRefreshMenuOpen">
+        <button
+          type="button"
+          *ngFor="let interval of refreshIntervals"
+          [class.is-active]="autoRefreshIntervalSeconds === interval"
+          (click)="setRefreshInterval(interval)"
+        >
+          {{ interval }}s
+        </button>
+      </div>
+      <button
+        class="refresh-toggle"
+        type="button"
+        [attr.aria-pressed]="autoRefreshEnabled"
+        [attr.aria-label]="autoRefreshEnabled ? 'Pause auto refresh' : 'Resume auto refresh'"
+        (click)="toggleAutoRefresh()"
+      >
+        <span class="refresh-dot" [class.is-paused]="!autoRefreshEnabled"></span>
+      </button>
+    </div>
+  </footer>
+</section>
